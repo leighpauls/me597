@@ -12,7 +12,7 @@ function [ ] = carrotFollowSimulation()
 
   x = 10;
   y = 1;
-  heading = 0;
+  heading = pi / 2;
   for t = [0:0.1:15]
     [x y heading] = carrotFollower(waypoints, 1, 3, x, y, heading);
     scatter(x, y, 40, 'r', 'x');
