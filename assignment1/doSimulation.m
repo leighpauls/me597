@@ -2,9 +2,8 @@ function [ ] = doSimulation()
          x = 0;
          y = 0;
          heading = 0;
-         hold('off');
-         axis equal;
          hold('on');
+         axis equal;
          for t = [0:0.1:20]
              if mod(t, 1.0) == 0
                scatter(x, y, 40, 'r');
