@@ -57,6 +57,6 @@ function [x, y, heading] = carrotFollower(waypoints, r, speed, prevX, prevY, pre
     headingError = headingError - 2*pi;
   end
   
-  steeringAngle = -1 * headingError;
+  steeringAngle = 1 * headingError;
   [x y heading] = bikeModel(prevX, prevY, prevHeading, steeringAngle, speed);
 end
