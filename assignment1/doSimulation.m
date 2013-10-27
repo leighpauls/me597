@@ -8,9 +8,7 @@ function [ ] = doSimulation()
   heading = 0;
 
   for t = [0:0.1:20]
-    if mod(t, 1.0) == 0
-      scatter(x, y, 40, 'r');
-    end
+    scatter(x, y, 40, 'r', 'x');
     [x, y, heading] = bikeModel(x, y, heading, (10 - t) * pi / 180, 3);
   end
 end
