@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.12)  1 NOV 2013 13:34
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.12)  1 NOV 2013 14:37
 entering extended mode
  %&-line parsing enabled.
 **me597_assignment1.tex
@@ -303,19 +303,29 @@ LaTeX Font Warning: Command \normalsize invalid in math mode on input line 35.
 
 LaTeX Font Warning: Command \normalsize invalid in math mode on input line 35.
 
-[2] (./me597_assignment1.aux)
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 43.
+
+
+LaTeX Font Warning: Command \normalsize invalid in math mode on input line 43.
+
+<Pictures/points_1.png, id=11, 364.36125pt x 226.8475pt>
+File: Pictures/points_1.png Graphic file (type png)
+
+<use Pictures/points_1.png> [2 <./Pictures/points_1.png>]
+(./me597_assignment1.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 3158 strings out of 495061
- 44164 string characters out of 1182621
+ 3165 strings out of 495061
+ 44292 string characters out of 1182621
  102644 words of memory out of 3000000
- 6317 multiletter control sequences out of 15000+50000
+ 6321 multiletter control sequences out of 15000+50000
  10810 words of font info for 40 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 33i,5n,34p,551b,222s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,8n,34p,551b,222s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fon
@@ -323,10 +333,11 @@ ts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/pub
 lic/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
 /cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr6.pfb
 ></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/
-texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on me597_assignment1.pdf (3 pages, 96597 bytes).
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texliv
+e/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on me597_assignment1.pdf (3 pages, 110670 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
+ 55 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -34,11 +34,26 @@ The robot needs to track a rectangular path. The path \textit{A} is defined by 4
 \begin{equation}
 \onehalfspacing
 \centering
-\emph{A =\textnormal{\lbrack} $a_1 a_2 a_3 a_4$ \textnormal{\rbrack} }
+\emph{P =\textnormal{\lbrack} $p_1 p_2 p_3 p_4$ \textnormal{\rbrack} }
 \end{equation}
 To find the closest point on the path you need to know which part of the path is closest. We can imagine the path as having 4 segments, one for each side of the rectangle. Segment \textit{S($p_n, p_{n+1}$)} is the segment with start and end points at \textit{$p_n$} and \textit{$p_{n+1}$} respectively, where \textit{n = 1, 2, 3}. For each \textit{S}, we need to find the closest point on that segment. Then we will compare the closest points on each segment to see which of the segments is the closest overall. 
 
-Let \textit{$p_c$} be the current point. Let \textit{$r_{p_n/p_{n+1}}$} be the distance between those two points. This notation is extended to all other distances between points. The distance calculation is fairly trivial and not included in this report. Let's define the distance from the 
+Let \textit{$p_{cur}$} be the current point. Let \textit{$r_{p_n/p_{n+1}}$} be the distance between those two points. This notation is extended to all other distances between points. The distance calculation is fairly trivial and not included in this report. Let's define the distance from the first waypoint, \textit{$p_n$}, of the current segment to the closest point on the line as \textit{$d_c$}. 
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{$d_c$ = $r_{p_{cur}/p_n}$ * $\frac{r_{p_{cur}/p_{n+1}}^2 -  r_{p_{cur}/p_n}^2 - r_{p_n/p_{n+1}}^2}{-2*r_{p_cur/p_n}*r_{p_n/p_{n+1}}}$ }
+%\frac{$r_{p_{cur}/p_{n+1}}^2$ -  $r_{p_{cur}/p_n}^2$ - $r_{p_n/p_{n+1}}^2$}{-2*$r_{p_cur/p_n}$*$r_{p_n/p_{n+1}}$}}
+\end{equation}
+The figure below shows an example of \textit{$d_c$}. Other point configurations are possible.   
+\begin{figure}[ht]
+\hspace{0.5cm}
+\centering
+\includegraphics[scale=0.5]{Pictures/points_1.png}
+\end{figure}
+
+
+ 
 
 
 
