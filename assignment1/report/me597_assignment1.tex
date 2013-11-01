@@ -42,16 +42,16 @@ Let \textit{$p_{cur}$} be the current point. Let \textit{$r_{p_n/p_{n+1}}$} be t
 \begin{equation}
 \onehalfspacing
 \centering
-\emph{$d_c$ = $r_{p_{cur}/p_n}$ * $\frac{r_{p_{cur}/p_{n+1}}^2 -  r_{p_{cur}/p_n}^2 - r_{p_n/p_{n+1}}^2}{-2*r_{p_cur/p_n}*r_{p_n/p_{n+1}}}$ }
+\emph{$d_c$ = $r_{p_{cur}/p_n}$ * $\frac{r_{p_{n+1}/p_{cur}}^2 -  r_{p_n/p_{cur}}^2 - r_{p_{n+1}/p_n}^2}{-2*r_{p_n/p_cur}*r_{p_{n+1}/p_n}}$ }
 %\frac{$r_{p_{cur}/p_{n+1}}^2$ -  $r_{p_{cur}/p_n}^2$ - $r_{p_n/p_{n+1}}^2$}{-2*$r_{p_cur/p_n}$*$r_{p_n/p_{n+1}}$}}
 \end{equation}
-The figure below shows an example of \textit{$d_c$}. Other point configurations are possible.   
+The figure below shows an example of \textit{$d_c$}. Other point configurations are possible. 
 \begin{figure}[ht]
 \hspace{0.5cm}
 \centering
 \includegraphics[scale=0.5]{Pictures/points_1.png}
 \end{figure}
-
+To find the closest point on the line we have to consider a number of cases. If the points are oriented as above, finding the closest point is fairly straight forward. You just add  \textit{$d_c$} to the location of \textit{$p_n$}. However, what if  \textit{$p_{cur}$} is closest to the top edge of the rectangle and moving counterclockwise? This would mean you need to subtract  \textit{$d_c$} from the location of \textit{$p_n$}. Other cases include if \textit{$d_c$} is negative or greater than \textit{$r_{p_{n+1}/p_n}$}; for example if \textit{$p_{cur}$} is outside the rectangle.
 
  
 
