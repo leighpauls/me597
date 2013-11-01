@@ -1,5 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage{sydewkrpt}
+\usepackage{amsmath}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%    Begin Document    %%%
@@ -51,7 +52,50 @@ The figure below shows an example of \textit{$d_c$}. Other point configurations 
 \centering
 \includegraphics[scale=0.5]{Pictures/points_1.png}
 \end{figure}
-To find the closest point on the line we have to consider a number of cases. If the points are oriented as above, finding the closest point is fairly straight forward. You just add  \textit{$d_c$} to the location of \textit{$p_n$}. However, what if  \textit{$p_{cur}$} is closest to the top edge of the rectangle and moving counterclockwise? This would mean you need to subtract  \textit{$d_c$} from the location of \textit{$p_n$}. Other cases include if \textit{$d_c$} is negative or greater than \textit{$r_{p_{n+1}/p_n}$}; for example if \textit{$p_{cur}$} is outside the rectangle.
+To find the closest point on the line we have to consider a number of cases. If the points are oriented as above, finding the closest point is fairly straight forward. You just add  \textit{$d_c$} to the location of \textit{$p_n$}. However, what if  \textit{$p_{cur}$} is closest to the top edge of the rectangle and moving counterclockwise? This would mean you need to subtract  \textit{$d_c$} from the location of \textit{$p_n$}. Other cases include if \textit{$d_c$} is negative or greater than \textit{$r_{p_{n+1}/p_n}$}; for example if \textit{$p_{cur}$} is outside the rectangle. To take all these situations into account:
+\[ 
+      p_{closest} = 
+      \begin{cases} 
+      p_n & d_c < 0\\
+      p_n + d_c * \frac{p_{n+1} = p_n}{r_{p_{n+1}/p_n}} & r_{p_{n+1}/p_n} > d_c > 0 \\
+      p_{n+1} & d_c > r_{p_{n+1}/p_n}\\
+   \end{cases}
+\]
+This is repeated for every line segment and the line segment where the distance between $p_{cur}$ and $p_{closest}$ is chosen. Then that $p_{closest}$ is the overall closest point. To set the actual desired carrot position, check how mush distance is left on the line until the next waypoint. If the distance left is less than \textit{r =1} then the next waypoint is the carrot position. Otherwise, it computes the carrot position as follows:
+\[ 
+      p_{carrot} = 
+      \begin{cases} 
+      p_{n+1} & r > r_{p_{n+1}/p_{closest}}\\
+      p_{closest} + r * \frac{p_{n+1} + p_{closest}}{r_{p_{n+1}/p_{closest}}} & r < r_{p_{n+1}/p_{closest}} \\
+   \end{cases}
+\]
+To steer towards that position we find the the vector distance between the current position and carrot position, \textit{$r_{p_{carrot}/p_{current}}$}. Then the desired heading is:
+ \begin{equation}
+\onehalfspacing
+\centering
+\emph{$h_{desired}$ = arctan($\frac{r_{p_{carrot}/p_{current}x}}{r_{p_{carrot}/p_{current}y}}$)}
+\end{equation}
+\[ 
+      h_{error} = 
+      \begin{cases} 
+      h_{error} - 2*\pi & h_{error} > \pi \\
+      (h_{desired} - h_{t-1}) \% 2*\pi & h_{error} < \pi
+   \end{cases}
+\]
+We make the steering angle using proportional control (in this case we multiply our steering angle error by 1 to get a new steering angle).
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{$\delta$= 1 * $h_{error}$ }
+\end{equation}
+Then we just feed that steering angle into the bike model from the previous question.
+The resulting plot of the robot driving around the rectangle is shown below. It starts with an abitrary position at (10, 1) with a heading of 90$^\circ$.
+\begin{figure}[ht]
+\hspace{0.5cm}
+\centering
+\includegraphics[scale=0.5]{Pictures/carrot.png}
+\end{figure}
+
 
  
 
