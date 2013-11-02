@@ -26,12 +26,12 @@ For the bicycle model, we basically need to find the \textit{$x_t$} and \textit{
 \begin{equation}
 \onehalfspacing
 \centering
-\emph{ $x_t$ = $x_{t-1}$ + $d_t$*cos($\mu_{heading}$) + N(0, $\sigma_{xy}$)}
+\emph{ $x_t$ = $x_{t-1}$ + $d_t$*cos($\mu_{heading}$) + N(0, $\sigma_{xy}^2$)}
 \end{equation}
 \begin{equation}
 \onehalfspacing
 \centering
-\emph{ $y_t$ = $y_{t-1}$ + $d_t$*sin($\mu_{heading}$) + N(0, $\sigma_{xy}$)}
+\emph{ $y_t$ = $y_{t-1}$ + $d_t$*sin($\mu_{heading}$) + N(0, $\sigma_{xy}^2$)}
 \end{equation}
  Within that we get \textit{$d_t$}, which is the distance traveled since the last time step by multiplying the speed \textit{v = 3 m/s} by the time step  \textit{dt = 0.1 s}: 
 \begin{equation}
@@ -39,11 +39,11 @@ For the bicycle model, we basically need to find the \textit{$x_t$} and \textit{
 \centering
 \emph{ $d_t$ =  v*dt}
 \end{equation}
-We now need to get the heading. The heading, \textit{$h_t$}, is shown below. We add Guassian noise to the angle calculated with \textit{$\sigma_\theta$ = 1$^\circ$}.
+We now need to get the heading. The heading, \textit{$h_t$}, is shown below. We add Guassian noise to the angle calculated with \textit{$\sigma_\theta^2$ = 1$^\circ$}.
 \begin{equation}
 \onehalfspacing
 \centering
-\emph{ $h_t$ = $h_{t-1}$ + dheading*dt + N(0, $\sigma_\theta$)*dt}
+\emph{ $h_t$ = $h_{t-1}$ + dheading*dt + N(0, $\sigma_\theta^2$)*dt}
 \end{equation}
 The change in heading, \textit{dheading}, for the time step is found by:
 \begin{equation}
@@ -147,6 +147,45 @@ The resulting plot of the robot driving around the rectangle is shown below. It 
 \section{IGVC Navigation}
 \setlength{\parindent}{1cm}
 
+To generate a path that the carrot planner tries to follow, we generated waypoints. We used the bridge point strategy of generating two points, \textit{$p_1$, $p_2$}, close together. If one of the points is in an occupied part of the map then we throw that point away and keep the other one. If both points are in free space or both in occupied space we throw them both away. We repeat this until we have generated a satisfactory number of waypoints. This method helps us navigate through tighter spaces because it helps prevents the problem of only having waypoints in wide open areas and increases the number in tight spaces. 
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{$p_1$ = \textnormal{\lbrack}rand(0,1)*$map\_size_x$, rand(0,1)*$map\_size_y$ \textnormal{\rbrack}}
+\end{equation}
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{$p_2$ = \textnormal{\lbrack}$p_{1x}$ + N(0, $\sigma_{bridge}$, $p_{1y}$ + N(0, $\sigma_{bridge}$\textnormal{\rbrack}}
+\end{equation}
+Then we check if either of the points are occupied in the map. This amounts to retrieving the value of the map at each point. Next we try to find connections between each of the generated points. This is part of our algorithm that will take the most time to execute. It takes the distance vector, \textit{d}, between two points and then steps along it at a step size, \textit{step}, of the roughly the size of map resolution.
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{d = $p_b$ - $p_b$}
+\end{equation} 
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{step = $\frac{d}{r_{b/a}/resolution}$}
+\end{equation} 
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{$p_c$ = $p_a$ + $\frac{d}{step}$}
+\end{equation} 
+At each point along the line, represented in the above equations as \textit{$p_c$}, we check if the map is occupied. If so, then that line collides with an obstacle and does not represent a valid connection between points. Next we use A* to find the shortest path through the resulting connected points. The A* algorithm is fairly standard. The equations will not be reproduced here as it is mostly a matter of implementation. The selected path is shown below in red.
+\begin{figure}[ht]
+\hspace{0.5cm}
+\centering
+\includegraphics[scale=0.5]{Pictures/path_1.png}
+\end{figure}
+The path then gets fed to the carrot planner in the form of the ordered waypoints. The carrot planner uses the waypoints in the same way it used the rectangle's waypoints in the last question. The output of the carrot planner is shown below in blue.
+\begin{figure}[ht]
+\hspace{0.5cm}
+\centering
+\includegraphics[scale=0.5]{Pictures/maptraversesim.png}
+\end{figure}
 \newpage
 \singlespacing
 \section{Discussion}
