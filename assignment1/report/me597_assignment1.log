@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.12)  1 NOV 2013 20:02
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2013.9.12)  1 NOV 2013 20:32
 entering extended mode
  %&-line parsing enabled.
 **me597_assignment1.tex
@@ -431,7 +431,7 @@ LaTeX Font Warning: Command \normalsize invalid in math mode on input line 133.
 <Pictures/carrot.png, id=27, 411.136pt x 308.352pt>
 File: Pictures/carrot.png Graphic file (type png)
  <use Pictures/carrot.png>
-[3] [4 <./Pictures/carrot.png (PNG copy)>] (./me597_assignment1.aux)
+[3] [4 <./Pictures/carrot.png (PNG copy)>] [5] (./me597_assignment1.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -443,7 +443,7 @@ Here is how much of TeX's memory you used:
  6905 multiletter control sequences out of 15000+50000
  12156 words of font info for 45 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 33i,9n,34p,668b,222s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 33i,9n,34p,710b,222s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sha
 re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-
 texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/fon
@@ -455,9 +455,9 @@ e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texli
 ve/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/ty
 pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/public/a
 msfonts/cm/cmti12.pfb>
-Output written on me597_assignment1.pdf (5 pages, 153319 bytes).
+Output written on me597_assignment1.pdf (6 pages, 157845 bytes).
 PDF statistics:
- 71 PDF objects out of 1000 (max. 8388607)
+ 74 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

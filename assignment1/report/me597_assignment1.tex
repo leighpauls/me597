@@ -142,6 +142,26 @@ The resulting plot of the robot driving around the rectangle is shown below. It 
 \includegraphics[scale=0.5]{Pictures/carrot.png}
 \end{figure}
 
+\newpage
+\singlespacing
+\section{IGVC Navigation}
+\setlength{\parindent}{1cm}
+
+\newpage
+\singlespacing
+\section{Discussion}
+\setlength{\parindent}{1cm}
+
+One limitation of this approach (or at least the way we implemented this approach) is that it would only actually work for a bicycle of negligible size. The collision checks are done only for each point, which is the size of the resolution of the map. This approach could still work if the obstacles in the map are dilated appropriately. Alternatively, we could check in a radius around each point. This would ensure that we did not plan paths through areas that are, for exmaple, only one pixel wide.
+
+We also assume that the ground is perfectly flat. To take into account changes in elevation we would need a much more sophisticated map and model. A tool like Gazebo would be more suited for that task.
+
+Another limitation is that the robot is not guaranteed to be able to drive the path that the planner generates. The planner does not take into account the robot's kinematics and dynamics. For example, it might suggest a series of sharp turns to get through an area that the robot ultimately cannot navigate. The carrot following tends to cut corners so it is quite likely to create infeasible paths. To solve this, the we could use inverse kinematics to adapt the connections between the nodes to follow kinematically sound paths. Another way would be to use an approach like an RRT and generate somewhat random trajectories and accept the trajectory if it includes the next waypoint.  
+
+Related to this, the motion model assumes you have perfect traction and can always maintain a certain speed. The noise in the model does not perfectly take into account the fact that the wheels would slip more on turns than straightaways, for example. To remedy this, you could add momentum as a state variable.
+
+The path generated is also not an optimal path. It uses semi-random (bridge) points. The path is only optimal for that set of waypoints as we used A* to find the shortest possible path between those points. A sampling-based planner such as this does not guarantee an optimal path. However, by sampling more you can improve the chances of finding a better path. The probability of finding an optimal path converges as the number of samples goes to infinity. We could also change the approach to use a visibility graph instead of the generated points. This has its own challenges with proximity to obstacles, etc.  
+
 
  
 
