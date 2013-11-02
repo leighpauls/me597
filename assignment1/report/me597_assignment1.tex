@@ -22,9 +22,55 @@
 \section{Bicycle Model}
 \setlength{\parindent}{1cm}
 
-The bicycle model has a couple of 
-
-
+For the bicycle model, we basically need to find the \textit{$x_t$} and \textit{$y_t$} for each time step. We add Guassian noise to the position with \textit{$\sigma_{xy}$ = 0.02 m}.
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{ $x_t$ = $x_{t-1}$ + $d_t$*cos($\mu_{heading}$) + N(0, $\sigma_{xy}$)}
+\end{equation}
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{ $y_t$ = $y_{t-1}$ + $d_t$*sin($\mu_{heading}$) + N(0, $\sigma_{xy}$)}
+\end{equation}
+ Within that we get \textit{$d_t$}, which is the distance traveled since the last time step by multiplying the speed \textit{v = 3 m/s} by the time step  \textit{dt = 0.1 s}: 
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{ $d_t$ =  v*dt}
+\end{equation}
+We now need to get the heading. The heading, \textit{$h_t$}, is shown below. We add Guassian noise to the angle calculated with \textit{$\sigma_\theta$ = 1$^\circ$}.
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{ $h_t$ = $h_{t-1}$ + dheading*dt + N(0, $\sigma_\theta$)*dt}
+\end{equation}
+The change in heading, \textit{dheading}, for the time step is found by:
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{ dheading = v*tan($\delta$)}
+\end{equation}
+The average heading, \textit{$\mu_{heading}$}, used in the first equation is: 
+\begin{equation}
+\onehalfspacing
+\centering
+\emph{ $\mu_{heading}$ = $\frac{h_t + h_{t-1}}{2}$}
+\end{equation}
+The above equations all rely on \textit{$\delta$}. The instructions give a max steering angle of +/-30$^\circ$.
+\[ 
+      \delta = 
+      \begin{cases} 
+      30^\circ & t > 40\\
+      10 - t & t < 40
+   \end{cases}
+\]
+The resulting path for a start position of (0,0) and heading of 0$^\circ$ is shown below:
+\begin{figure}[ht]
+\hspace{0.5cm}
+\centering
+\includegraphics[scale=0.5]{Pictures/bikemodel.png}
+\end{figure}
 
 \newpage
 \singlespacing
