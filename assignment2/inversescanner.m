@@ -45,7 +45,7 @@ function [deltaLogitProb] = inversescanner(x, y, heading, groundMap, res)
     for j = 1:N
       cellX = i * res - res/2;
       cellY = j * res - res/2;
-      deltaLogitProb(i, j) = getLogitProbForRays(cellX, cellY, clearRays, contactRays);
+      deltaLogitProb(i, j) = getLogitProbForRays(cellX, cellY, clearRays, contactRays, res);
     end
   end
 end

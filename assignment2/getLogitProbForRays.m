@@ -1,15 +1,19 @@
-function [logitProb] = getLogitProbForRays(x, y, clearRays, contactRays)
+function [logitProb] = getLogitProbForRays(x, y, clearRays, contactRays, res)
   % given rays which are clear and rays wihch terminate in wall contact
   % return the logit probability of point (x,y) being occupied
   ALPHA = 0.2;
   BETA = 10 * pi / 180;
-  pos = [x y];
+  points = [x y;
+            x-res/2 y-res/2;
+            x+res/2 y-res/2;
+            x-res/2 y+res/2;
+            x+res/2 y-res/2];
   
   % try the rays with nothing in them
   for i = [1:size(clearRays)]
     raySource = clearRays(i, 1:2);
     rayEnd = clearRays(i, 3:4);
-    if withinPieSlice(pos, raySource, rayEnd, BETA)
+    if withinPieSlice(points, raySource, rayEnd, BETA)
        logitProb = logit(0.4);
        return;
     end
@@ -27,9 +31,9 @@ function [logitProb] = getLogitProbForRays(x, y, clearRays, contactRays)
     occupiedRayVector = rayDir * (rayLength + ALPHA/2);
     unoccupiedRayVector = rayDir * max(rayLength - ALPHA/2, 0);
 
-    if withinPieSlice(pos, raySource, raySource+occupiedRayVector, BETA)
+    if withinPieSlice(points, raySource, raySource+occupiedRayVector, BETA)
        % it's not unknown
-       if withinPieSlice(pos, raySource, raySource+unoccupiedRayVector, BETA)
+       if withinPieSlice(points, raySource, raySource+unoccupiedRayVector, BETA)
          % it's unoccupied
          logitProb = logit(0.4);
          return;
