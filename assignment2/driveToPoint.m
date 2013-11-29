@@ -7,8 +7,8 @@ function [x y heading atPoint] = driveToPoint(prevX, prevY, prevHeading, destX, 
      headingError = headingError - 2*pi;
   end
 
-  SPEED = 1.0;
-  TURN_RATE = 1.0;
+  SPEED = 0.1;
+  TURN_RATE = 0.2;
 
   distError = hypot(destX - prevX, destY - prevY);
   atPoint = false;
