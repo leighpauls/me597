@@ -11,8 +11,8 @@
 \waterlootitle{ME 597: Assignment 2}{
 
   }{
-  Sarah Elliott\\
-  Leigh Pauls\\
+  Sarah Elliott 20337924\\
+  Leigh Pauls 20339616\\
   \today
   }
 
@@ -22,14 +22,14 @@
 \section{Inverse Measurement Model}
 \setlength{\parindent}{1cm}
 
-We simulated the IR range sensor array by taking the current position and orientation of the robot, the position and direction offsets of all 6 sensors, and the true “ground map”. We then return 6 directed line segments. Each of those line segments represents the open space detected by a sensor.
+We simulated the IR range sensor array by taking the current position and orientation of the robot, the position and direction offsets of all 6 sensors, and the true ``ground map''. We then return 6 directed line segments. Each of those line segments represents the open space detected by a sensor.
 
-The inverse measurement model first looks at the length of a returned line segment. If the line segment’s length is equal to the maximum range of the sensor, then it assumes that the sensor did not reflect off of any wall, and it is considered a “clear” line segment. If the line segment is less than the maximum, than it assumes that there is an obstacle at the end of the line segment, and it is considered a “contacting” line segment.
+The inverse measurement model first looks at the length of a returned line segment. If the line segment’s length is equal to the maximum range of the sensor, then it assumes that the sensor did not reflect off of any wall, and it is considered a ``clear'' line segment. If the line segment is less than the maximum, than it assumes that there is an obstacle at the end of the line segment, and it is considered a ``contacting'' line segment.
 
 To update the probability map, the inverse measurement model iterates through each cell in the map. For each cell, it tests against each clear and contacting sensor line segment.
-For each clear line segment, a “pie slice” is defined, with the pointy end at the start of the segment, and the center of the curved end at the end of the line segment. The width of the slice is defined by a constant Beta (10 degrees). If any of the current cell’s corners, or its center point are within this pie slice, then the cell is updated to be considered “clear”.
-Each contacting line segment uses a similar update, but it instead uses 2 pie slices, a slightly longer “contact” pie slice, and a slightly shorter “clear” pie slice. The difference in size of the slices is defined by Alpha (0.1 meters). If any of the same points of the cell are within both slices, then the cell is considered clear, but if any are only in the contact slice, then the cell is considered occupied.
-Each time that a cell is considered to be occupied or not, the update is performed by adding logit(0.7) or logit(0.4), respectively, to that cell’s current logit ratio.
+For each clear line segment, a ``pie slice'' is defined, with the pointy end at the start of the segment, and the center of the curved end at the end of the line segment. The width of the slice is defined by a constant Beta (10 degrees). If any of the current cell's corners, or its center point are within this pie slice, then the cell is updated to be considered ``clear''.
+Each contacting line segment uses a similar update, but it instead uses 2 pie slices, a slightly longer ``contact'' pie slice, and a slightly shorter ``clear'' pie slice. The difference in size of the slices is defined by Alpha (0.1 meters). If any of the same points of the cell are within both slices, then the cell is considered clear, but if any are only in the contact slice, then the cell is considered occupied.
+Each time that a cell is considered to be occupied or not, the update is performed by adding logit(0.7) or logit(0.4), respectively, to that cell's current logit ratio.
 
 
 \newpage
@@ -51,7 +51,7 @@ This is a single update to the map given measurement lengths of [1, 1.5, 1.5, 0.
 \section{Exploration and Mapping}
 \setlength{\parindent}{1cm}
 
-We used a simple list of points to drive to to create an initial mapping of the environment, using logic of “turn to the point, then drive straight”.
+We used a simple list of points to drive to to create an initial mapping of the environment, using logic of ``turn to the point, then drive straight''.
 
 \begin{figure}[ht]
 \hspace{0.5cm}
